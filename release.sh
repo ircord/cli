@@ -16,7 +16,7 @@ case "$GOOS/$GOARCH" in
   *) echo "Unsupported CLI target: $GOOS/$GOARCH" >&2; exit 1 ;;
 esac
 
-repo_root=$(cd "$(dirname "$0")/.." && pwd)
+repo_root=$(cd "$(dirname "$0")" && pwd)
 output_dir=${1:-"$repo_root/.data/cli-release"}
 mkdir -p "$output_dir"
 output_dir=$(cd "$output_dir" && pwd)
@@ -28,7 +28,7 @@ if [[ "$GOOS" == windows ]]; then
   binary+=.exe
 fi
 (
-  cd "$repo_root/cli"
+  cd "$repo_root"
   CGO_ENABLED=0 GOOS="$GOOS" GOARCH="$GOARCH" go build -mod=readonly -trimpath \
     -ldflags "-s -w -X ircord/cli/internal/buildinfo.Version=$VERSION -X ircord/cli/internal/buildinfo.Commit=$COMMIT" \
     -o "$stage/$binary" ./cmd/ircordctl

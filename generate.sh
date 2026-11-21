@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 artifact=internal/contract/admin.gen.go
 generated=$(mktemp "${TMPDIR:-/tmp}/ircord-cli-contract.XXXXXX")
 trap 'rm -f "$generated"' EXIT HUP INT TERM
-go tool oapi-codegen -config oapi-codegen.yaml -o "$generated" ../backend/openapi.json
+go tool oapi-codegen -config oapi-codegen.yaml -o "$generated" "${IRCORD_OPENAPI:-../backend/openapi.json}"
 if [ ! -s "$generated" ]; then
   echo 'CLI contract generator produced no output.' >&2
   exit 1
