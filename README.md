@@ -17,3 +17,6 @@ for configuration and examples.
 Run `sh generate.sh` when the backend contract changes. It reads
 `../backend/openapi.json` by default. Set `IRCORD_OPENAPI` to the absolute path
 of a different OpenAPI file.
+
+Push a version tag in this repository to build and publish the six supported
+platform archives and checksums.
