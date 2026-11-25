@@ -1,6 +1,6 @@
 # CLI changelog
 
-## Unreleased
+## v0.7.4 — 2026-11-25
 
 ### Improved
 
