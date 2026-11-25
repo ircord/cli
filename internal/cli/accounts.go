@@ -164,8 +164,8 @@ The new password is read from a hidden prompt, or from --password-stdin or
 --password-file (one trailing line ending is removed). It is never taken from
 command arguments and never printed.
 
-Exit codes: 0 completed; 1 pending (saved; the backend keeps retrying, and running the
-command again with the same password retries now); 2 invalid input or password;
+Exit codes: 0 completed; 1 pending (saved for up to three automatic attempts. Run the
+command again with the same password to retry now); 2 invalid input or password;
 3 admin authentication rejected; 4 backend unreachable, failed, timed out or without
 this command; 5 no such account, or the backend has no IRCord accounts; 6 the associated
 IRC server refused the change outright (for example, it has no account of that name), so
@@ -212,7 +212,7 @@ nothing was changed; 130 cancelled.`,
 				fmt.Fprintln(p.Out)
 			}
 			if result.Status != "completed" {
-				return &exitError{exitResetPending, errors.New("password reset is pending; the backend keeps retrying, and sign-in stays blocked until it finishes")}
+				return &exitError{exitResetPending, errors.New("password reset is pending. Run the command again with the same password to retry")}
 			}
 			return nil
 		},

@@ -454,14 +454,14 @@ type PasswordResetResult struct {
 	// SessionsRevoked Signed-in IRCord sessions that this reset signed out.
 	SessionsRevoked int64 `json:"sessionsRevoked"`
 
-	// Status completed: IRCord, the associated IRC server and the saved IRC login all use the new password. pending: the reset is saved and the backend keeps retrying the remaining steps; sign-in stays blocked until they finish.
+	// Status A completed reset updates the password in IRCord, the associated IRC server, and the saved IRC login. A pending reset gets up to three automatic attempts. Sign-in stays blocked until the reset finishes.
 	Status PasswordResetResultStatus `json:"status"`
 
 	// Username The account's username, as stored.
 	Username string `json:"username"`
 }
 
-// PasswordResetResultStatus completed: IRCord, the associated IRC server and the saved IRC login all use the new password. pending: the reset is saved and the backend keeps retrying the remaining steps; sign-in stays blocked until they finish.
+// PasswordResetResultStatus A completed reset updates the password in IRCord, the associated IRC server, and the saved IRC login. A pending reset gets up to three automatic attempts. Sign-in stays blocked until the reset finishes.
 type PasswordResetResultStatus string
 
 // Status defines model for Status.
